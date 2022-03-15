@@ -1,0 +1,36 @@
+package com.tepe.raid.utils
+
+import com.example.myapplication.dto.DiskHolder
+import com.example.myapplication.dto.RaidSetting
+
+class DataContainer {
+
+    var diskSize = -1
+    var diskNumber = -1
+    var raidName = "NaN"
+    var type: RaidSetting? = null
+    val arrayDisk = mutableListOf<DiskHolder>()
+
+    fun clear() {
+        diskSize = -1
+        diskNumber = -1
+        raidName = "NaN"
+        arrayDisk.clear()
+        type = null
+    }
+
+    fun next() {
+        arrayDisk.forEach {
+            it.pointer++
+        }
+    }
+
+    companion object {
+        private var ct: DataContainer? = null
+
+        fun getInstance() = if (ct == null) {
+            ct = DataContainer()
+            ct!!
+        } else ct!!
+    }
+}
